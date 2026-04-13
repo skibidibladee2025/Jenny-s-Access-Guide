@@ -5,13 +5,13 @@
     <title>Redirecting...</title>
     <script>
         // Redirect all 404s to index.html so client-side routing works
-        var path = window.location.pathname.replace(/\/$/, '');
-        if (path && path !== '/Jenny-s-Access-Guide') {
-            window.location.replace('/Jenny-s-Access-Guide/?redirect=' + encodeURIComponent(path));
-        }
+        var segments = window.location.pathname.split('/').filter(Boolean);
+        var isRepo = segments[0] === 'Jenny-s-Access-Guide' || segments[0].includes('github');
+        var newUrl = isRepo ? '/Jenny-s-Access-Guide/' : '/';
+        window.location.replace(newUrl);
     </script>
 </head>
 <body>
-    Redirecting...
+    Redirecting to home...
 </body>
 </html>
